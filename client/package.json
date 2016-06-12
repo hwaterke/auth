@@ -1,0 +1,19 @@
+{
+  "name": "auth",
+  "version": "0.0.1",
+  "description": "Authentication platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hwaterke/auth.git"
+  },
+  "author": "Harold Waterkeyn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hwaterke/auth/issues"
+  },
+  "homepage": "https://github.com/hwaterke/auth#readme"
+}
