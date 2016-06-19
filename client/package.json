@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/hwaterke/auth/issues"
   },
-  "homepage": "https://github.com/hwaterke/auth#readme"
+  "homepage": "https://github.com/hwaterke/auth#readme",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  }
 }
