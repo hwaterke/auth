@@ -1,0 +1,16 @@
+- if logged_in?
+  a.btn.btn-primary href==url('/logout') Lougout
+  h2 Session
+  pre = JSON.pretty_generate(session.to_h)
+
+  h2 Params
+  pre = JSON.pretty_generate(params.to_h)
+
+  h2 Headers
+  pre = JSON.pretty_generate(http_headers)
+- else
+  #login-box
+    form#login-form action='/login' method='post'
+      input#email-in name='email-in' type='email' placeholder='Email address' required=true autofocus=true
+      input#password-in name='password-in' type='password' placeholder='Password' required=true
+      button.btn.btn-default type='submit' Sign in

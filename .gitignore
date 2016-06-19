@@ -1,3 +1,5 @@
+server/config.yml
+
 # Logs
 logs
 *.log
