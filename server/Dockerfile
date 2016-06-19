@@ -4,4 +4,4 @@ RUN gem install bundler
 WORKDIR /code/server
 COPY Gemfile ./
 RUN bundler install
-CMD ["/usr/local/bin/ruby", "server.rb", "-o", "0.0.0.0"]
+CMD ["/usr/local/bin/ruby", "server.rb"]
