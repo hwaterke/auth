@@ -2,47 +2,35 @@ require 'bundler'
 Bundler.require
 require 'yaml'
 
+require_relative 'lib/warden'
+require_relative 'lib/auth_helpers'
+require_relative 'lib/models/setup'
+
 # Load Configuration
 set :server_config, YAML.load_file('config.yml')
-use Rack::Session::Cookie, :key => 'auth.session', :domain => settings.server_config['cookie']['domain'], :path => '/', :secret => settings.server_config['cookie']['domain']
+
+# Configure cookies
+if settings.server_config['cookie']['domain'].nil?
+  use Rack::Session::Cookie, :key => 'auth.session', :secret => settings.server_config['cookie']['secret']
+else
+  use Rack::Session::Cookie, :key => 'auth.session', :domain => settings.server_config['cookie']['domain'], :path => '/', :secret => settings.server_config['cookie']['secret']
+end
+register Sinatra::Flash
+
+# Configure Warden
+use Warden::Manager do |manager|
+  manager.default_strategies :password
+end
+
+# Create the single user.
 set :password, settings.server_config['password']
+u = User.create(email: settings.server_config['email'], password: settings.server_config['password'], password_confirmation: settings.server_config['password'])
+u.save
 
 helpers do
-  def logged_in?
-    session[:token] == 'ok'
-  end
-
-  def login!
-    session[:token] = 'ok'
-  end
-
-  def logout!
-    session[:token] = nil
-  end
-
   def http_headers
     env.select {|k,v| k.start_with? 'HTTP_'}
   end
 end
 
-get '/auth' do
-  if logged_in?
-    halt 200
-  else
-    halt 401
-  end
-end
-
-post '/login' do
-  login! if params['password-in'] == settings.password
-  redirect to('/login')
-end
-
-get '/logout' do
-  logout!
-  redirect to('/login')
-end
-
-get '/login/?*' do
-  slim :login, layout: :layout
-end
+require_relative 'lib/routes.rb'

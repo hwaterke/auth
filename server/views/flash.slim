@@ -1,0 +1,4 @@
+- unless flash(:flash).empty?
+  #flash
+    - flash(:flash).each do |f|
+      .alert.alert-danger = f[1]

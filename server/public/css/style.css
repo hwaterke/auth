@@ -1,20 +1,21 @@
 html {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   background-color: #55e7ca;
   background-image: radial-gradient(circle farthest-side at center top, #55e7ca 0%, #1abc9c 100%);
 }
 
-#login-box {
+.login {
   max-width: 360px;
   padding: 40px;
   margin: 80px auto;
   color: #404040;
-  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 #login-form input {
@@ -26,6 +27,8 @@ body {
   font-size: 16px;
 }
 
-#login-form button {
-  width: 100%;
+#flash {
+  margin: auto;
+  margin-top: 40px;
+  max-width: 738px;
 }
