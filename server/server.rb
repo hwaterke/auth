@@ -20,6 +20,7 @@ register Sinatra::Flash
 # Configure Warden
 use Warden::Manager do |manager|
   manager.default_strategies :password
+  manager.intercept_401 = false
 end
 
 # Create the single user.
